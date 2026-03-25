@@ -1,4 +1,5 @@
 ## SharePulse (Send Anywhere-style)
+https://share-pulse.vercel.app/
 
 Real-time file sharing web app using a **6-digit one-time key** (OTP) with a **10-minute expiry**.
 
@@ -43,7 +44,6 @@ npm install
 npm run dev
 ```
 
-Frontend runs on `http://localhost:5173`.
 
 ### How it works
 
