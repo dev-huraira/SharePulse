@@ -42,6 +42,7 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-1 sm:flex">
           <Item to="/" label="Transfer" />
+          <Item to="/developer" label="Developer" />
           <Item to="/about" label="About" />
           <Item to="/contact" label="Contact" />
         </nav>
@@ -80,6 +81,7 @@ export default function Navbar() {
               }}
             >
               <Item to="/" label="Transfer" />
+              <Item to="/developer" label="Developer" />
               <Item to="/about" label="About" />
               <Item to="/contact" label="Contact" />
             </div>
