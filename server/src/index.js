@@ -8,7 +8,6 @@ const rateLimit = require('express-rate-limit')
 
 const { loadEnv } = require('./config/env')
 const { connectMongo } = require('./config/db')
-const { makeUploadMiddleware } = require('./config/upload')
 const { createTransferRouter } = require('./routes/transferRoutes')
 const { registerSocketHandlers } = require('./socket/register')
 const { startCleanupJob } = require('./jobs/cleanup')
@@ -65,10 +64,6 @@ async function main() {
   startCleanupJob({ intervalMs: env.cleanupIntervalMs, io })
 
   // WebRTC mode: no server-side file uploads (signaling-only)
-  const uploadMiddleware = makeUploadMiddleware({
-    uploadDir: env.uploadDir,
-    maxFileBytes: env.maxFileBytes,
-  })
 
   app.get('/health', (req, res) => res.json({ ok: true }))
   app.get('/api/rtc-config', (req, res) => {
@@ -84,7 +79,7 @@ async function main() {
     }
     res.json({ iceServers })
   })
-  const transferRouter = createTransferRouter({ uploadMiddleware })
+  const transferRouter = createTransferRouter()
   // Support both forms: `/upload` and `/api/upload`
   app.use('/api', apiLimiter)
   app.use(['/upload', '/verify', '/api/upload', '/api/verify'], otpLimiter)

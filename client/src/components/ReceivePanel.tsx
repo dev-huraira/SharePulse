@@ -34,6 +34,12 @@ export default function ReceivePanel({ initialOtp }: { initialOtp?: string }) {
   const socket = useMemo(() => getSocket(), [])
 
   useEffect(() => {
+    if (initialOtp) {
+      setOtp(onlyDigits6(initialOtp))
+    }
+  }, [initialOtp])
+
+  useEffect(() => {
     const onExpired = ({ otp: roomOtp }: { otp: string }) => {
       if (roomOtp === otp) {
         setStatus('expired')

@@ -1,7 +1,7 @@
 const express = require('express')
 const { upload, verify, download } = require('../controllers/transferController')
 
-function createTransferRouter({ uploadMiddleware }) {
+function createTransferRouter() {
   const router = express.Router()
 
   // WebRTC mode: no file upload; only metadata is sent

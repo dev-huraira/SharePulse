@@ -4,13 +4,10 @@ import ReceivePanel from '../components/ReceivePanel'
 import { getSocket } from '../lib/socket'
 
 function useQueryOtp() {
-  const [otp, setOtp] = useState<string | undefined>(undefined)
-  useEffect(() => {
+  return useMemo(() => {
     const params = new URLSearchParams(window.location.search)
-    const q = params.get('otp') || undefined
-    setOtp(q || undefined)
+    return params.get('otp') || undefined
   }, [])
-  return otp
 }
 
 export default function Home() {
